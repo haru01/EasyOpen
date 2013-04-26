@@ -1,6 +1,10 @@
 [
     {
-        "caption": "EasyOpen: With Git Status",
+        "caption": "EasyOpen: File With Git Status",
         "command": "open_file_with_git_status"
+    }
+    ,{
+        "caption": "EasyOpen: Gem With Bundle",
+        "command": "open_gem_with_bundle"
     }
 ]

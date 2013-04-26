@@ -2,3 +2,6 @@
 *.tmLanguage.cache
 .DS_Store
 package-metadata.json
+Gemfile
+Gemfile.lock
+.ruby-version
