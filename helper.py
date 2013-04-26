@@ -1,7 +1,8 @@
 from subprocess import Popen, PIPE
 import os
 
-def exec_cmd(cmd, args = [], source='', cwd = '', env = None):
+
+def exec_cmd(cmd, args=[], source='', cwd='', env=None):
     if not type(args) is list:
         args = [args]
     else:
@@ -14,4 +15,5 @@ def exec_cmd(cmd, args = [], source='', cwd = '', env = None):
         proc = Popen(command, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
         stat = proc.communicate()
     okay = proc.returncode == 0
+
     return {'okay': okay, 'out': stat[0], 'err': stat[1]}
