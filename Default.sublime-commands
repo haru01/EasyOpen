@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "EasyOpen: With Git Status",
+        "command": "open_file_with_git_status"
+    }
+]
