@@ -3,6 +3,7 @@ import sublime
 import sublime_plugin
 from helper import exec_cmd
 
+
 class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand):
     force_open = False
 
@@ -14,7 +15,7 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand):
         base_dir = self.window.folders()[0]
         result = exec_cmd('git', args=['status', '--porcelain'], cwd=base_dir)
         # TODO Error, Japanese file name, Async, IF Rename, If Delete
-        return filter(lambda n: n != '' , result['out'].split('\n'))
+        return filter(lambda n: n != '', result['out'].split('\n'))
 
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
