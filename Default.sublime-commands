@@ -32,6 +32,10 @@
         "command": "stackoverflow_search_from_input"
     }
     ,{
+        "caption": "EasyOpen; QA@IT: Search from Input",
+        "command": "search_with_qa_at_it"
+    }
+    ,{
         "caption": "EasyOpen; SmartGoogle: Search from selction",
         "command": "search_google_from_selection"
     }
