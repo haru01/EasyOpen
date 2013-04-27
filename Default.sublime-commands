@@ -6,5 +6,37 @@
     ,{
         "caption": "EasyOpen: Gem With Bundle",
         "command": "open_gem_with_bundle"
+    },
+    {
+        "caption": "EasyOpen: Show TODOs: Project and open files",
+        "command": "todo"
+    },
+    {
+        "caption": "EasyOpen: Show TODOs: Open files only",
+        "command": "todo", "args": {"open_files_only": true}
+    }
+    ,{
+        "caption": "EasyOpen: GotoResent",
+        "command": "goto_recent"
+    }
+    ,{
+        "caption": "EasyOpen: Git: Open Modified Files",
+        "command": "git_open_modified_files"
+    }
+    ,{
+        "caption": "EasyOpen: Stackoverflow: Search Selection",
+        "command": "stackoverflow_search_selection"
+    }
+    ,{
+        "caption": "EasyOpen: Stackoverflow: Search from Input",
+        "command": "stackoverflow_search_from_input"
+    }
+    ,{
+        "caption": "EasyOpen: SmartGoogle: Search from selction",
+        "command": "search_google_from_selection"
+    }
+    ,{
+        "caption": "EasyOpen: SmartGoogle: Search from input",
+        "command": "search_google_from_input"
     }
 ]
