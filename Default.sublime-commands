@@ -36,6 +36,10 @@
         "command": "search_with_qa_at_it"
     }
     ,{
+        "caption": "EasyOpen; Github: Search from Input",
+        "command": "search_with_github"
+    }
+    ,{
         "caption": "EasyOpen; SmartGoogle: Search from selction",
         "command": "search_google_from_selection"
     }
