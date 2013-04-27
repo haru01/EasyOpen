@@ -9,3 +9,8 @@ class SearchWithQaAtItCommand(SearchWithBrowserCommand):
 class SearchWithGithubCommand(SearchWithBrowserCommand):
     def url_search(self, text):
         return 'https://github.com/search?q=' + text.replace(' ', '%20')
+
+
+class SearchWithQiitaCommand(SearchWithBrowserCommand):
+    def url_search(self, text):
+        return 'http://qiita.com/search?q=' + text.replace(' ', '%20')
