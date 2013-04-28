@@ -1,5 +1,9 @@
 [
     {
+        "caption": "EasyOpen; :Sandbox",
+        "command": "sandbox"
+    }
+    ,{
         "caption": "EasyOpen; Git Status",
         "command": "open_file_with_git_status"
     }
