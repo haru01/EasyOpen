@@ -19,4 +19,3 @@ type command+shift+p & ;
 - SmartGoogle
  - https://github.com/iiAtlas/SmartGoogle
 - bundle
-- Sublime Text 2 in Application Folder

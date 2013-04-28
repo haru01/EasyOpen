@@ -1,18 +1,30 @@
-import sublime_plugin
-import sublime
+from subprocess import Popen, PIPE
+import os
+import threading
 
 
-class SandboxCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        v = sublime.active_window().new_file()
-        v.set_scratch(True)
-        v.set_name('sample')
-        edit = v.begin_edit()
-        v.erase(edit, sublime.Region(0, v.size()))
-        v.insert(edit, v.size(), 'before')
-        v.end_edit(edit)
+# class CommandExecutor:
+#     def __report(self, result):
+#         print result
 
-        r = sublime.Region(0, 5)
-        ## Region : match_dicts
-        v.add_regions("inserted", [r], "markup.inserted.diff", "dot", sublime.HIDDEN)
-        v.settings().set('command_mode', True)
+#     def run_cmd_without_callback(self, *popenArgs):
+#         self.run_cmd(self.__report, *popenArgs)
+
+#     def run_cmd(self, callback, *popenArgs):
+#         def runInThread(callback, popenArgs):
+#             env = {'PATH': os.environ['PATH'],
+#                    'EDITOR': 'subl'}
+#             proc = Popen(*popenArgs, env=env, stdout=PIPE, stderr=PIPE)
+#             proc.wait()
+#             stat = proc.communicate()
+#             okay = proc.returncode == 0
+#             callback({'okay': okay, 'out': stat[0], 'err': stat[1]})
+#             return
+
+#         thread = threading.Thread(target=runInThread,
+#                                   args=(callback, popenArgs))
+#         thread.start()
+#         return thread
+
+# a = CommandExecutor()
+# a.run_cmd_without_callback(['bundle', 'open', 'rspec-core'])
