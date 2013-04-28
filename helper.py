@@ -4,21 +4,24 @@ import os
 from subprocess import Popen, PIPE
 
 
-def exec_cmd(cmd, args=[], source='', cwd='', env=None):
-    if not type(args) is list:
-        args = [args]
-    else:
-        if env is None:
-            env = {'PATH': os.environ['PATH']}
-        if source == '':
-            command = [cmd]+args
+class RunCmdCommand(sublime_plugin.WindowCommand):
+    def exec_cmd(self, cmd, args=[], source='', cwd='', env=None):
+        if cwd == '':
+            cwd = self.window.folders()[0]  # NOTO:  うまく動かない場合あり
+        if not type(args) is list:
+            args = [args]
         else:
-            command = [cmd]+args+[source]
-        proc = Popen(command, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
-        stat = proc.communicate()
-    okay = proc.returncode == 0
+            if env is None:
+                env = {'PATH': os.environ['PATH']}
+            if source == '':
+                command = [cmd]+args
+            else:
+                command = [cmd]+args+[source]
+            proc = Popen(command, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
+            stat = proc.communicate()
+        okay = proc.returncode == 0
 
-    return {'okay': okay, 'out': stat[0], 'err': stat[1]}
+        return {'okay': okay, 'out': stat[0], 'err': stat[1]}
 
 
 class SearchWithBrowserCommand(sublime_plugin.WindowCommand):

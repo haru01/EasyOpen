@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import sublime
-import sublime_plugin
-from helper import exec_cmd
+from helper import RunCmdCommand
 
 
-class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand):
+class OpenFileWithGitStatusCommand(RunCmdCommand):
     force_open = False
 
     def run(self):
@@ -12,8 +11,7 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand):
         sublime.active_window().show_quick_panel(self.items, self.panel_done, sublime.MONOSPACE_FONT)
 
     def items_git_status(self):
-        base_dir = self.window.folders()[0]
-        result = exec_cmd('git', args=['status', '--porcelain'], cwd=base_dir)
+        result = self.exec_cmd('git', args=['status', '--porcelain'])
         # TODO Error, Japanese file name, Async, IF Rename, If Delete
         return filter(lambda n: n != '', result['out'].split('\n'))
 
