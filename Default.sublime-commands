@@ -4,6 +4,10 @@
         "command": "sandbox"
     }
     ,{
+        "caption": "EasyOpen; Mdfind (Mac Only)",
+        "command": "open_file_with_mdfind"
+    }
+    ,{
         "caption": "EasyOpen; Git Grep",
         "command": "open_file_with_git_grep"
     }
