@@ -6,6 +6,7 @@ import threading
 from subprocess import Popen, PIPE
 
 
+# cwd
 class CommandExecutor:
     def env(self):
         return {'PATH': os.environ['PATH'], 'EDITOR': 'subl'}
@@ -23,7 +24,6 @@ class CommandExecutor:
 
     def async_run_cmd(self, callback=None, *popenArgs):
         def runInThread(callback, popenArgs):
-            # TODO cwd
             proc = Popen(*popenArgs, env=self.env(), stdout=PIPE, stderr=PIPE)
             proc.wait()
             stat = proc.communicate()
