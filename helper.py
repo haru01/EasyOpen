@@ -23,6 +23,7 @@ class CommandExecutor:
 
     def async_run_cmd(self, callback=None, *popenArgs):
         def runInThread(callback, popenArgs):
+            # TODO cwd
             proc = Popen(*popenArgs, env=self.env(), stdout=PIPE, stderr=PIPE)
             proc.wait()
             stat = proc.communicate()
