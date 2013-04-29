@@ -15,3 +15,8 @@ class SearchWithGithubCommand(SearchWithBrowserCommand):
 class SearchWithQiitaCommand(SearchWithBrowserCommand):
     def url_search(self, text):
         return 'http://qiita.com/search?q=' + text.replace(' ', '%20')
+
+
+class SearchWithStackoverflowCommand(SearchWithBrowserCommand):
+    def url_search(self, text):
+        return 'http://stackoverflow.com/search?q=' + text.replace(' ', '%20')
