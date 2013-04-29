@@ -23,4 +23,4 @@ class OpenFileWithGitGrepCommand(sublime_plugin.WindowCommand, CommandExecutor):
         if 0 > picked < len(self.items):
             return
         picked_file = self.items[picked].split(' ')[0]
-        self.window.open_file(picked_file, sublime.ENCODED_POSITION)
+        self.window_root().open_file(picked_file, sublime.ENCODED_POSITION)

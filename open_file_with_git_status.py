@@ -21,4 +21,4 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor
             return
         picked_file = self.items[picked][3:]
 
-        sublime.active_window().run_command('open_file', {'file': picked_file})
+        self.window_root().run_command('open_file', {'file': picked_file})
