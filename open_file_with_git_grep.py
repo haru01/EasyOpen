@@ -22,5 +22,8 @@ class OpenFileWithGitGrepCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
+        sublime.active_window().open_file(self.selected_file_name(picked), sublime.ENCODED_POSITION)
+
+    def selected_file_name(self, picked):
         picked_file = self.items[picked].split(' ')[0]
-        self.window_root().open_file(picked_file, sublime.ENCODED_POSITION)
+        return self.file_name_full_path(picked_file)

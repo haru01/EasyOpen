@@ -22,5 +22,5 @@ class OpenFileWithMdfindCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        picked_file = self.items[picked]
-        self.window.open_file(picked_file)
+        selected_file_name = self.items[picked]
+        self.window.open_file(selected_file_name)

@@ -19,6 +19,8 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        picked_file = self.items[picked][3:]
+        sublime.active_window().open_file(self.selected_file_name(picked))
 
-        self.window_root().run_command('open_file', {'file': picked_file})
+    def selected_file_name(self, picked):
+        picked_file = self.items[picked][3:]
+        return self.file_name_full_path(picked_file)

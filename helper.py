@@ -19,9 +19,8 @@ class CommandExecutor:
             # sublime text 2
             return sublime.active_window().folders()[0]
 
-    def window_root(self):
-        # NOTE: geven: .gitignore exsit in root dir. file open ....
-        return sublime.active_window().open_file(self.root_directory() + "/.gitignore").window()
+    def file_name_full_path(self, file_name):
+        return os.path.join(self.root_directory(), file_name)
 
     def popen(self, *popenArgs):
         return Popen(*popenArgs, env=self.env(), cwd=self.root_directory(), stdout=PIPE, stderr=PIPE)
