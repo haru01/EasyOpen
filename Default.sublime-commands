@@ -20,6 +20,10 @@
         "command": "open_gem_with_bundle"
     },
     {
+        "caption": "EasyOpen; File In Gems",
+        "command": "open_file_in_gems"
+    },
+    {
         "caption": "EasyOpen; Show TODOs: Project and open files",
         "command": "todo"
     },
