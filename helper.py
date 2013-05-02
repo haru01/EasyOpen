@@ -11,6 +11,7 @@ class CommandExecutor:
     def env(self):
         return {'PATH': os.environ['PATH'], 'EDITOR': 'subl'}
 
+    # NOTE: Main thread only
     def root_directory(self):
         try:
             # sublime text 3
@@ -22,11 +23,11 @@ class CommandExecutor:
     def file_name_full_path(self, file_name):
         return os.path.join(self.root_directory(), file_name)
 
-    def popen(self, *popenArgs):
-        return Popen(*popenArgs, env=self.env(), cwd=self.root_directory(), stdout=PIPE, stderr=PIPE)
+    def popen(self, env, cwd, *popenArgs):
+        return Popen(*popenArgs, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
 
     def run_cmd(self, *popenArgs):
-        proc = self.popen(*popenArgs)
+        proc = self.popen(self.env(), self.root_directory(), *popenArgs)
         stat = proc.communicate()
         okay = proc.returncode == 0
         return {'okay': okay, 'out': stat[0], 'err': stat[1]}
@@ -37,8 +38,11 @@ class CommandExecutor:
         self.async_run_cmd(__report, *popenArgs)
 
     def async_run_cmd(self, callback=None, *popenArgs):
-        def runInThread(callback, popenArgs):
-            proc = self.popen(*popenArgs)
+        cwd = self.root_directory()
+        env = self.env()
+
+        def runInThread(callback, env, cwd, popenArgs):
+            proc = self.popen(env, cwd, *popenArgs)
             proc.wait()
             stat = proc.communicate()
             okay = proc.returncode == 0
@@ -47,7 +51,7 @@ class CommandExecutor:
             return
 
         thread = threading.Thread(target=runInThread,
-                                  args=(callback, popenArgs))
+                                  args=(callback, env, cwd, popenArgs))
         thread.start()
         return thread
 
