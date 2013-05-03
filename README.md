@@ -3,7 +3,7 @@
 
 ## Usage
 
-type command+shift+p & ;
+type command+shift+p ->  ;
 
 ## Dependency
 - CTag
@@ -15,6 +15,8 @@ type command+shift+p & ;
 - Git
  - https://github.com/kemayo/sublime-text-2-git
 - bundle
+- The Silver Searcher (ag)
+ - https://github.com/ggreer/the_silver_searcher
 
 
 ## License
