@@ -4,6 +4,7 @@ import sublime_plugin
 from helper import CommandExecutor
 
 
+# TODO: Error
 class OpenFileInGemsCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 

@@ -4,6 +4,7 @@ import sublime_plugin
 from helper import CommandExecutor
 
 
+# TODO: Error, IF Rename, If Delete
 class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
@@ -13,7 +14,6 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor
 
     def items_git_status(self):
         result = self.run_cmd(['git', 'status', '--porcelain'])
-        # TODO Error, Japanese file name, IF Rename, If Delete
         return filter(lambda n: n != '', result['out'].split('\n'))
 
     def panel_done(self, picked):

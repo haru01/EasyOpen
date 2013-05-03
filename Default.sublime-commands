@@ -4,12 +4,16 @@
         "command": "sandbox"
     }
     ,{
-        "caption": "EasyOpen; Mdfind (Mac Only)",
+        "caption": "EasyOpen; Finder: Mdfind (Mac Only)",
         "command": "open_file_with_mdfind"
     }
     ,{
-        "caption": "EasyOpen; Git Grep",
+        "caption": "EasyOpen; Finder: Git Grep",
         "command": "open_file_with_git_grep"
+    }
+    ,{
+        "caption": "EasyOpen; Finder: In Gems",
+        "command": "open_file_in_gems"
     }
     ,{
         "caption": "EasyOpen; Git Status",
@@ -20,16 +24,8 @@
         "command": "open_gem_with_bundle"
     },
     {
-        "caption": "EasyOpen; File In Gems",
-        "command": "open_file_in_gems"
-    },
-    {
         "caption": "EasyOpen; Show TODOs: Project and open files",
         "command": "todo"
-    },
-    {
-        "caption": "EasyOpen; Show TODOs: Open files only",
-        "command": "todo", "args": {"open_files_only": true}
     }
     ,{
         "caption": "EasyOpen; GotoResent",
@@ -56,19 +52,7 @@
         "command": "search_with_github"
     }
     ,{
-        "caption": "EasyOpen; CTags: Show Symbols (file)",
-        "command": "show_symbols",
-        "context": [
-          {
-            "key": "selector",
-            "match_all": true,
-            "operand": "source -source.css",
-            "operator": "equal"
-          }
-        ]
-    },
-    {
-        "caption": "EasyOpen; CTags: Show Symbols (all)",
+        "caption": "EasyOpen; Finder: CTags: Show Symbols (all)",
         "command": "show_symbols",
         "args": {
           "type": "multi"

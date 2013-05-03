@@ -4,6 +4,7 @@ import sublime_plugin
 from helper import CommandExecutor
 
 
+# TODO: error
 class OpenGemWithBundleCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
@@ -13,7 +14,6 @@ class OpenGemWithBundleCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def items_with_bundle_list(self):
         result = self.run_cmd(['bundle', 'list'])
-        # TODO: error
         return filter(lambda n: n != '', result['out'].split('\n'))
 
     def panel_done(self, picked):

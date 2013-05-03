@@ -4,6 +4,7 @@ import sublime_plugin
 from helper import CommandExecutor
 
 
+# TODO: Error
 class OpenFileWithMdfindCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
@@ -16,7 +17,6 @@ class OpenFileWithMdfindCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def items_mdfind(self, key):
         results = self.run_cmd(['mdfind', key])
-        # TODO Error
         return [item.decode('utf-8') for item in results['out'].split('\n') if item != '']
 
     def panel_done(self, picked):
