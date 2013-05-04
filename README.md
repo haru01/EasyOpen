@@ -1,11 +1,11 @@
 ## What?
- Sublime Text 2 Plugin. Search & Open
+ Sublime Text 2 Plugin. Search & Open. Mac Only
 
 ## Usage
 
 type command+shift+p ->  ;
 
-## Dependency
+## Dependencies
 - CTag
  - https://github.com/SublimeText/CTags
 - SublimeTODO
