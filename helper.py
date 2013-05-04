@@ -68,18 +68,19 @@ class ProgressBar(object):
     def is_timeout(self):
         return self.is_timeout
 
-    def run(self, i="."):
+    def run(self, dots="."):
         self.current_time = self.current_time + 500
         if self.timeout < self.current_time:
             sublime.status_message("Stop: %s. Please another keyword" % self.message)
+            # Note: exit(), join(timeout) ではうまく、プロセスが終了しなかったので pkill を使った.
             CommandExecutor().run_cmd(["pkill", "-f", "EasyOpen/ag_in_gems.sh"])
             return
         if not self.thread.is_alive():
             # TODO: fail message
             sublime.status_message(self.success_message)
             return
-        sublime.status_message('%s [%s]' % (self.message, ' ' + i))
-        sublime.set_timeout(lambda: self.run(i+"."), 500)
+        sublime.status_message('%s [%s]' % (self.message, ' ' + dots))
+        sublime.set_timeout(lambda: self.run(dots+"."), 500)
 
 
 class SearchWithBrowserCommand(sublime_plugin.WindowCommand):
