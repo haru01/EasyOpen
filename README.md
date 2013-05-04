@@ -17,7 +17,7 @@ type command+shift+p ->  ;
 - bundle
 - The Silver Searcher (ag)
  - https://github.com/ggreer/the_silver_searcher
-
+- pkill
 
 ## License
 All of EasyOpen is licensed under the MIT license.
