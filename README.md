@@ -1,11 +1,18 @@
 ## What?
  Sublime Text 2 Plugin. Search & Open. Mac Only
 
-## Usage
+## Install
 
-type command+shift+p ->  ;
+```sh
+$ cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
+$ git clone https://github.com/haru01/EasyOpen.git
+```
 
 ## Dependencies
+- bundle
+- The Silver Searcher (ag)
+ - https://github.com/ggreer/the_silver_searcher
+- pkill
 - CTag
  - https://github.com/SublimeText/CTags
 - SublimeTODO
@@ -14,10 +21,11 @@ type command+shift+p ->  ;
  - https://github.com/paccator/GotoRecent
 - Git
  - https://github.com/kemayo/sublime-text-2-git
-- bundle
-- The Silver Searcher (ag)
- - https://github.com/ggreer/the_silver_searcher
-- pkill
+
+## Usage
+
+type command+shift+p ->  ;
+
 
 ## License
 All of EasyOpen is licensed under the MIT license.
