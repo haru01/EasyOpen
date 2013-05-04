@@ -56,6 +56,32 @@ class CommandExecutor:
         return thread
 
 
+class ProgressBar(object):
+    def __init__(self, thread, message, success_message, timeout=30000):
+        self.thread = thread
+        self.message = message
+        self.success_message = success_message
+        self.timeout = timeout
+        self.current_time = 0
+        sublime.set_timeout(lambda: self.run(), 500)
+
+    def is_timeout(self):
+        return self.is_timeout
+
+    def run(self, i="."):
+        self.current_time = self.current_time + 500
+        if self.timeout < self.current_time:
+            sublime.status_message("Stop: %s. Please another keyword" % self.message)
+            CommandExecutor().run_cmd(["pkill", "-f", "EasyOpen/ag_in_gems.sh"])
+            return
+        if not self.thread.is_alive():
+            # TODO: fail message
+            sublime.status_message(self.success_message)
+            return
+        sublime.status_message('%s [%s]' % (self.message, ' ' + i))
+        sublime.set_timeout(lambda: self.run(i+"."), 500)
+
+
 class SearchWithBrowserCommand(sublime_plugin.WindowCommand):
     def run(self):
         self.window.show_input_panel('Search:', '', self.on_done, self.on_change, self.on_cancel)
