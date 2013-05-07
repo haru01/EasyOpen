@@ -9,6 +9,8 @@ $ git clone https://github.com/haru01/EasyOpen.git
 ```
 
 ## Dependencies
+- git
+ - http://git-scm.com/
 - bundler
  - http://gembundler.com/
 - The Silver Searcher (ag)
@@ -20,7 +22,7 @@ $ git clone https://github.com/haru01/EasyOpen.git
  - https://github.com/robcowie/SublimeTODO
 - GotoRecent
  - https://github.com/paccator/GotoRecent
-- Git
+- Sublime Text 2 plugin: git
  - https://github.com/kemayo/sublime-text-2-git
 
 ## Usage
