@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import sublime
 import sublime_plugin
 from helper import CommandExecutor
@@ -23,4 +24,6 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor
 
     def selected_file_name(self, picked):
         picked_file = self.items[picked][3:]
+        if re.match("R", picked_file):
+            picked_file = picked_file.split(' -> ')[1]
         return self.file_name_full_path(picked_file)
