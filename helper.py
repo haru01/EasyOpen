@@ -8,6 +8,13 @@ import re
 from subprocess import Popen, PIPE
 
 
+def env():
+    return {'PATH': os.environ['PATH'],
+            'EDITOR': 'subl',
+            'HOME': os.environ['HOME'],
+            'KEYWORD_DEF': '(def\s|class\s|module\s|\sattr_accessor\s|\sattr_reader\s|\sattr_accessor\s|\sscope\s|\sclass_attribute\s|\sbelongs_to\s|\shas_many\s|\shas_one\s|\sattr_readonly\s)'}
+
+
 def root_directory():
     try:
         # sublime text 3
@@ -15,6 +22,14 @@ def root_directory():
     except:
         # sublime text 2
         return sublime.active_window().folders()[0]
+
+
+def current_word():
+    view = sublime.active_window().active_view()
+    region = view.sel()[0]
+    if region.begin() == region.end():
+        region = view.word(region)
+    return view.substr(region)
 
 
 # filename:linenumber:keyword
@@ -32,16 +47,11 @@ class IndexLine:
 
 
 class CommandExecutor:
-    def env(self):
-        return {'PATH': os.environ['PATH'],
-                'EDITOR': 'subl',
-                'HOME': os.environ['HOME']}
-
     def popen(self, env, cwd, *popen_args):
         return Popen(*popen_args, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
 
     def run_cmd(self, *popen_args):
-        proc = self.popen(self.env(), root_directory(), *popen_args)
+        proc = self.popen(env(), root_directory(), *popen_args)
         stat = proc.communicate()
         okay = proc.returncode == 0
         return {'okay': okay, 'out': stat[0], 'err': stat[1]}
@@ -52,9 +62,6 @@ class CommandExecutor:
         self.async_run_cmd(__report, *popen_args)
 
     def async_run_cmd(self, callback=None, *popen_args):
-        cwd = root_directory()
-        env = self.env()
-
         def run_in_thread(callback, env, cwd, popen_args):
             proc = self.popen(env, cwd, *popen_args)
             proc.wait()
@@ -65,7 +72,7 @@ class CommandExecutor:
             return
 
         thread = threading.Thread(target=run_in_thread,
-                                  args=(callback, env, cwd, popen_args))
+                                  args=(callback, env(), root_directory(), popen_args))
         thread.start()
         return thread
 
