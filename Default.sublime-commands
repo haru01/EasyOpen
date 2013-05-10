@@ -4,11 +4,11 @@
         "command": "sandbox"
     }
     ,{
-        "caption": "EasyOpen; Create Index File",
+        "caption": "EasyOpen;; Create Index File",
         "command": "create_easy_open_index"
     }
     ,{
-        "caption": "EasyOpen; Finder: Index Search",
+        "caption": "EasyOpen;; Finder: Index Search",
         "command": "open_file_with_index"
     }
     ,{
@@ -24,16 +24,12 @@
         "command": "open_file_in_gems"
     }
     ,{
-        "caption": "EasyOpen; Git Status",
+        "caption": "EasyOpen;; Git Status",
         "command": "open_file_with_git_status"
     }
     ,{
         "caption": "EasyOpen; Gem With Bundle",
         "command": "open_gem_with_bundle"
-    },
-    {
-        "caption": "EasyOpen; Show TODOs: Project and open files",
-        "command": "todo"
     }
     ,{
         "caption": "EasyOpen; GotoResent",
@@ -58,20 +54,5 @@
     ,{
         "caption": "EasyOpen; Github: Search from Input",
         "command": "search_with_github"
-    }
-    ,{
-        "caption": "EasyOpen; Finder: CTags: Show Symbols (all)",
-        "command": "show_symbols",
-        "args": {
-          "type": "multi"
-        },
-        "context": [
-          {
-            "key": "selector",
-            "match_all": true,
-            "operand": "source -source.css",
-            "operator": "equal"
-          }
-        ]
     }
 ]
