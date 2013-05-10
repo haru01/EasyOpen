@@ -33,7 +33,9 @@ class IndexLine:
 
 class CommandExecutor:
     def env(self):
-        return {'PATH': os.environ['PATH'], 'EDITOR': 'subl'}
+        return {'PATH': os.environ['PATH'],
+                'EDITOR': 'subl',
+                'HOME': os.environ['HOME']}
 
     def popen(self, env, cwd, *popen_args):
         return Popen(*popen_args, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)

@@ -29,10 +29,9 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor
 
     def items_git_status(self):
         result = self.run_cmd(['git', 'status', '--porcelain'])
-        return filter(lambda n: n != '', result['out'].split('\n'))
+        return [n.decode('utf-8') for n in result['out'].split('\n') if n != '']
 
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
         sublime.active_window().open_file(GitStausLine(self.items[picked]).selected_file_name())
-
