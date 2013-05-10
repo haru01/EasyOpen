@@ -4,30 +4,44 @@ import webbrowser
 import os
 import threading
 import sublime
+import re
 from subprocess import Popen, PIPE
+
+
+def root_directory():
+    try:
+        # sublime text 3
+        return sublime.active_window().project_data()['folders'][0]['path']
+    except:
+        # sublime text 2
+        return sublime.active_window().folders()[0]
+
+
+class IndexLine:
+    def __init__(self, line):
+        self.line = line
+
+    def selected_file_name(self):
+        if re.match(r'^/', self.line):
+            return self.filename_linenumber()
+        return '%s/%s' % (root_directory(),  self.filename_linenumber())
+
+    def filename_linenumber(self):
+        return re.sub(r'^([^:]*:\d*):.*', r'\1', self.line)
 
 
 class CommandExecutor:
     def env(self):
         return {'PATH': os.environ['PATH'], 'EDITOR': 'subl'}
 
-    # NOTE: Main thread only
-    def root_directory(self):
-        try:
-            # sublime text 3
-            return sublime.active_window().project_data()['folders'][0]['path']
-        except:
-            # sublime text 2
-            return sublime.active_window().folders()[0]
-
     def file_name_full_path(self, file_name):
-        return os.path.join(self.root_directory(), file_name)
+        return os.path.join(root_directory(), file_name)
 
     def popen(self, env, cwd, *popen_args):
         return Popen(*popen_args, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
 
     def run_cmd(self, *popen_args):
-        proc = self.popen(self.env(), self.root_directory(), *popen_args)
+        proc = self.popen(self.env(), root_directory(), *popen_args)
         stat = proc.communicate()
         okay = proc.returncode == 0
         return {'okay': okay, 'out': stat[0], 'err': stat[1]}
@@ -38,7 +52,7 @@ class CommandExecutor:
         self.async_run_cmd(__report, *popen_args)
 
     def async_run_cmd(self, callback=None, *popen_args):
-        cwd = self.root_directory()
+        cwd = root_directory()
         env = self.env()
 
         def run_in_thread(callback, env, cwd, popen_args):

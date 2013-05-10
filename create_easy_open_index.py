@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import sublime
 import sublime_plugin
 from helper import CommandExecutor, ProgressBar

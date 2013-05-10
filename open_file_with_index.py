@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-import re
 import sublime
 import sublime_plugin
-from helper import CommandExecutor
+from helper import CommandExecutor, IndexLine, root_directory
 
 
 # TODO: Error
@@ -24,13 +23,4 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        sublime.active_window().open_file(self.selected_file_name(picked), sublime.ENCODED_POSITION)
-
-    def selected_file_name(self, picked):
-        line = self.items[picked]
-        if re.match(r'^/', line):
-            return self.filename_linenumber(line)
-        return '%s/%s' % (self.root_directory(),  self.filename_linenumber(line))
-
-    def filename_linenumber(self, line):
-        return re.sub(r'^([^:]*:\d*):.*', r'\1', line)
+        sublime.active_window().open_file(IndexLine(self.items[picked]).selected_file_name(), sublime.ENCODED_POSITION)

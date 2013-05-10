@@ -14,7 +14,7 @@ class OpenGemWithBundleCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def items_with_bundle_list(self):
         result = self.run_cmd(['bundle', 'list'])
-        return filter(lambda n: n != '', result['out'].split('\n'))
+        return [n for n in result['out'].split('\n') if n != '']
 
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
