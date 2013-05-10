@@ -8,7 +8,7 @@
         "command": "create_easy_open_index"
     }
     ,{
-        "caption": "EasyOpen; Finder: With EasyOpen Index Search",
+        "caption": "EasyOpen; Finder: Index Search",
         "command": "open_file_with_index"
     }
     ,{

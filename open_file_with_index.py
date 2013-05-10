@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import sublime
 import sublime_plugin
 from helper import CommandExecutor
@@ -26,5 +27,7 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
         sublime.active_window().open_file(self.selected_file_name(picked), sublime.ENCODED_POSITION)
 
     def selected_file_name(self, picked):
-        print self.items[picked]
-        return self.items[picked]
+        file_name = self.items[picked]
+        if re.match("^\/", file_name):
+            return file_name
+        return self.root_directory() + "/" + file_name
