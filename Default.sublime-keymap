@@ -1,0 +1,10 @@
+[
+  {
+    "command": "open_file_with_git_status",
+    "keys": ["ctrl+super+r"]
+  },
+  {
+    "command": "open_file_with_index",
+    "keys": ["ctrl+super+s"]
+  }
+]
