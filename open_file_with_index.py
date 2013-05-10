@@ -27,7 +27,10 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
         sublime.active_window().open_file(self.selected_file_name(picked), sublime.ENCODED_POSITION)
 
     def selected_file_name(self, picked):
-        file_name = self.items[picked]
-        if re.match("^\/", file_name):
-            return file_name
-        return self.root_directory() + "/" + file_name
+        line = self.items[picked]
+        if re.match(r'^/', line):
+            return self.filename_linenumber(line)
+        return '%s/%s' % (self.root_directory(),  self.filename_linenumber(line))
+
+    def filename_linenumber(self, line):
+        return re.sub(r'^([^:]*:\d*):.*', r'\1', line)
