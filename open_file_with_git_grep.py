@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor
+from helper import CommandExecutor, IndexLine
 
 
 # TODO: Error
@@ -17,13 +17,15 @@ class OpenFileWithGitGrepCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def items_git_grep(self, key):
         results = self.run_cmd(['git', 'grep', '-n', key])
-        return [item.decode('utf-8') for item in results['out'].split('\n') if item != '']
+        return [self._name(item) for item in results['out'].split('\n') if item != '']
+
+    def _name(self, item):
+        try:
+            return item.decode('utf-8')
+        except UnicodeDecodeError:
+            return ''
 
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        sublime.active_window().open_file(self.selected_file_name(picked), sublime.ENCODED_POSITION)
-
-    def selected_file_name(self, picked):
-        picked_file = self.items[picked].split(' ')[0]
-        return self.file_name_full_path(picked_file)
+        sublime.active_window().open_file(IndexLine(self.items[picked]).selected_file_name(), sublime.ENCODED_POSITION)

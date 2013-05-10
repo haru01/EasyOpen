@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, ProgressBar
+from helper import CommandExecutor, ProgressBar, IndexLine
 
 
 # TODO: Error
@@ -30,8 +30,4 @@ class OpenFileInGemsCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        sublime.active_window().open_file(self.selected_file_name(picked), sublime.ENCODED_POSITION)
-
-    def selected_file_name(self, picked):
-        picked_file = self.items[picked].split(' ')[0]
-        return self.file_name_full_path(picked_file)
+        sublime.active_window().open_file(IndexLine(self.items[picked]).selected_file_name(), sublime.ENCODED_POSITION)

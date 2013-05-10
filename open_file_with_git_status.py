@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
-import re
+import os
 import sublime
 import sublime_plugin
-from helper import CommandExecutor
+from helper import CommandExecutor, root_directory
 
 
-# TODO: Error, IF Rename, If Delete
+class GitStausLine:
+    def __init__(self, line):
+        self.line = line
+
+    def selected_file_name(self):
+        picked_file = self.line[3:]
+        if " -> " in picked_file:
+            picked_file = picked_file.split(' -> ')[1]
+        return self.file_name_full_path(picked_file)
+
+    def file_name_full_path(self, file_name):
+        return os.path.join(root_directory(), file_name)
+
+
+# TODO: Error
 class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
@@ -20,10 +34,5 @@ class OpenFileWithGitStatusCommand(sublime_plugin.WindowCommand, CommandExecutor
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        sublime.active_window().open_file(self.selected_file_name(picked))
+        sublime.active_window().open_file(GitStausLine(self.items[picked]).selected_file_name())
 
-    def selected_file_name(self, picked):
-        picked_file = self.items[picked][3:]
-        if " -> " in picked_file:
-            picked_file = picked_file.split(' -> ')[1]
-        return self.file_name_full_path(picked_file)

@@ -17,25 +17,23 @@ def root_directory():
         return sublime.active_window().folders()[0]
 
 
+# filename:linenumber:keyword
 class IndexLine:
     def __init__(self, line):
         self.line = line
 
     def selected_file_name(self):
         if re.match(r'^/', self.line):
-            return self.filename_linenumber()
-        return '%s/%s' % (root_directory(),  self.filename_linenumber())
+            return self.filename_linenumber_only()
+        return os.path.join(root_directory(), self.filename_linenumber_only())
 
-    def filename_linenumber(self):
+    def filename_linenumber_only(self):
         return re.sub(r'^([^:]*:\d*):.*', r'\1', self.line)
 
 
 class CommandExecutor:
     def env(self):
         return {'PATH': os.environ['PATH'], 'EDITOR': 'subl'}
-
-    def file_name_full_path(self, file_name):
-        return os.path.join(root_directory(), file_name)
 
     def popen(self, env, cwd, *popen_args):
         return Popen(*popen_args, env=env, cwd=cwd, stdout=PIPE, stderr=PIPE)
