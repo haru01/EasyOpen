@@ -8,6 +8,10 @@
         "command": "create_easy_open_index"
     }
     ,{
+        "caption": "EasyOpen; Finder: With EasyOpen Index Search",
+        "command": "open_file_with_index"
+    }
+    ,{
         "caption": "EasyOpen; Finder: Mdfind (Mac Only)",
         "command": "open_file_with_mdfind"
     }
