@@ -8,8 +8,12 @@
         "command": "create_easy_open_index"
     }
     ,{
-        "caption": "EasyOpen;; Jump current_key with index",
+        "caption": "EasyOpen;; Jump Current Word with index",
         "command": "jump_key_with_index"
+    }
+    ,{
+        "caption": "EasyOpen;; Jump Back",
+        "command": "jump_back"
     }
     ,{
         "caption": "EasyOpen;; Finder: Index Search",
@@ -20,7 +24,7 @@
         "command": "open_file_with_mdfind"
     }
     ,{
-        "caption": "EasyOpen; Finder: Git Grep",
+        "caption": "EasyOpen;; Finder: Git Grep",
         "command": "open_file_with_git_grep"
     }
     ,{
