@@ -8,6 +8,10 @@
         "command": "create_easy_open_index"
     }
     ,{
+        "caption": "EasyOpen;; Jump current_key with index",
+        "command": "jump_key_with_index"
+    }
+    ,{
         "caption": "EasyOpen;; Finder: Index Search",
         "command": "open_file_with_index"
     }

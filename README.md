@@ -23,7 +23,7 @@ $ git clone https://github.com/haru01/EasyOpen.git
 
 ## Usage
 
-type command+shift+p ->  ;
+type command+shift+p ->  ;;
 
 
 ## License
