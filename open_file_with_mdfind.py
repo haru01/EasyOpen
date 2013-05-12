@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor
+from helper import CommandExecutor, current_word
 
 
 # TODO: Error
@@ -9,7 +9,7 @@ class OpenFileWithMdfindCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
     def run(self):
-        self.window.show_input_panel('Mdfind:', '', self.on_done, None, None)
+        self.window.show_input_panel('Mdfind:', current_word(), self.on_done, None, None)
 
     def on_done(self, input):
         self.items = self.items_mdfind(input)

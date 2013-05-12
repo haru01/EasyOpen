@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, IndexLine, root_directory
+from helper import CommandExecutor, IndexLine, current_word
 
 
 # TODO: Error
@@ -9,7 +9,7 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
     def run(self):
-        self.window.show_input_panel('Index Search:', '', self.on_done, None, None)
+        self.window.show_input_panel('Index Search:', current_word(), self.on_done, None, None)
 
     def on_done(self, input):
         self.items = self.items_git_grep(input)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, IndexLine
+from helper import CommandExecutor, IndexLine, current_word
 
 
 # TODO: Error
@@ -9,7 +9,7 @@ class OpenFileWithGitGrepCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
     def run(self):
-        self.window.show_input_panel('Git Grep:', '', self.on_done, None, None)
+        self.window.show_input_panel('Git Grep:', current_word(), self.on_done, None, None)
 
     def on_done(self, input):
         self.items = self.items_git_grep(input)

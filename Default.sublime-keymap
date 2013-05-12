@@ -1,7 +1,7 @@
 [
   {
     "command": "create_easy_open_index",
-    "keys": ["ctrl+super+i", "ctrl+super+i"]
+    "keys": ["ctrl+super+c", "ctrl+super+c"]
   }
   ,{
     "command": "open_file_with_git_status",
@@ -9,6 +9,10 @@
   }
   ,{
     "command": "open_file_with_index",
+    "keys": ["ctrl+super+i"]
+  }
+  ,{
+    "command": "open_file_with_git_grep",
     "keys": ["ctrl+super+s"]
   }
   ,{

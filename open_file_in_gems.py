@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, ProgressBar, IndexLine
+from helper import CommandExecutor, ProgressBar, IndexLine, current_word
 
 
 # TODO: Error
@@ -9,7 +9,7 @@ class OpenFileInGemsCommand(sublime_plugin.WindowCommand, CommandExecutor):
     force_open = False
 
     def run(self):
-        self.window.show_input_panel('Find in Gems', '', self.on_done, None, None)
+        self.window.show_input_panel('Find in Gems', current_word(), self.on_done, None, None)
 
     def on_done(self, input):
         self.items_in_gems_with_ag(input)
