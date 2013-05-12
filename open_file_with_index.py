@@ -12,10 +12,10 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
         self.window.show_input_panel('Index Search:', current_word(), self.on_done, None, None)
 
     def on_done(self, input):
-        self.items = self.items_git_grep(input)
+        self.items = self._items(input)
         sublime.active_window().show_quick_panel(self.items, self.panel_done, sublime.MONOSPACE_FONT)
 
-    def items_git_grep(self, key):
+    def _items(self, key):
         sh = sublime.packages_path() + "/EasyOpen/search_index.sh"
         results = self.run_cmd([sh, key.replace(' ', '\s')])
         return [item.decode('utf-8') for item in results['out'].split('\n') if item != '']
