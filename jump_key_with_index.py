@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, IndexLine, env
+from helper import CommandExecutor, IndexLine, env, current_word
 
 
 easy_open_opened_histories = []
@@ -16,14 +16,6 @@ def current_row_colum():
 def current_filename_linenumber():
     view = sublime.active_window().active_view()
     return "%s:%s" % (view.file_name(), current_row_colum())
-
-
-def current_word():
-    view = sublime.active_window().active_view()
-    region = view.sel()[0]
-    if region.begin() == region.end():
-        region = view.word(region)
-    return view.substr(region)
 
 
 class JumpKeyWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):

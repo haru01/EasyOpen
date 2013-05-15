@@ -10,7 +10,6 @@ class CreateEasyOpenIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def run(self):
         sh = sublime.packages_path() + "/EasyOpen/create_index.sh"
-        print sh
         thread = self.async_run_cmd(self.cmd_done, [sh])
         ProgressBar(thread, 'creating index', 'done:!')
 

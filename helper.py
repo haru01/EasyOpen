@@ -24,6 +24,14 @@ def root_directory():
         return sublime.active_window().folders()[0]
 
 
+def current_word():
+    view = sublime.active_window().active_view()
+    region = view.sel()[0]
+    if region.begin() == region.end():
+        region = view.word(region)
+    return view.substr(region)
+
+
 # filename:linenumber:keyword
 class IndexLine:
     def __init__(self, line):
