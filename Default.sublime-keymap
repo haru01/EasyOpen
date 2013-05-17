@@ -23,4 +23,9 @@
     "command": "jump_back",
     "keys": ["ctrl+super+k"]
   }
+  ,{
+    "command": "sandbox",
+    "keys": ["ctrl+super+space"]
+  }
+
 ]
