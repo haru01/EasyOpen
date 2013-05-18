@@ -24,7 +24,7 @@
     "keys": ["ctrl+super+k"]
   }
   ,{
-    "command": "sandbox",
+    "command": "paste_method_snippet",
     "keys": ["ctrl+super+space"]
   }
 
