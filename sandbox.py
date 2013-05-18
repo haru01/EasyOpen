@@ -1,28 +1,30 @@
-# -*- coding: utf-8 -*-
-import sublime
-import sublime_plugin
-from helper import CommandExecutor, current_word
+from subprocess import Popen, PIPE
+import os
+import threading
 
 
-def current_word_region():
-    view = sublime.active_window().active_view()
-    region = view.sel()[0]
-    if region.begin() == region.end():
-        region = view.word(region)
+# class CommandExecutor:
+#     def __report(self, result):
+#         print result
 
-    return region
+#     def run_cmd_without_callback(self, *popenArgs):
+#         self.run_cmd(self.__report, *popenArgs)
 
+#     def run_cmd(self, callback, *popenArgs):
+#         def runInThread(callback, popenArgs):
+#             env = {'PATH': os.environ['PATH'],
+#                    'EDITOR': 'subl'}
+#             proc = Popen(*popenArgs, env=env, stdout=PIPE, stderr=PIPE)
+#             proc.wait()
+#             stat = proc.communicate()
+#             okay = proc.returncode == 0
+#             callback({'okay': okay, 'out': stat[0], 'err': stat[1]})
+#             return
 
-class SandboxCommand(sublime_plugin.WindowCommand, CommandExecutor):
-    def run(self):
-        method_def = self.run_cmd(['ag', '--nocolor', 'def\s' + current_word(), '.easyopen_index'])['out'].split("\n")[0].split("def ")[1]
-        view = sublime.active_window().active_view()
+#         thread = threading.Thread(target=runInThread,
+#                                   args=(callback, popenArgs))
+#         thread.start()
+#         return thread
 
-        edit = view.begin_edit()
-        view.erase(edit, current_word_region())
-        view.end_edit(edit)
-
-        view.run_command("insert_snippet", {"contents": method_def})
-
-# 行列番号
-# 補完の文字列置換 run(self):
+# a = CommandExecutor()
+# a.run_cmd_without_callback(['bundle', 'open', 'rspec-core'])

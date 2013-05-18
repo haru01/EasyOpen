@@ -114,7 +114,7 @@ class ProgressBar(object):
 
 class SearchWithBrowserCommand(sublime_plugin.WindowCommand):
     def run(self):
-        self.window.show_input_panel('Search:', current_word(), self.on_done, self.on_change, self.on_cancel)
+        self.window.show_input_panel('Search:', '', self.on_done, self.on_change, self.on_cancel)
 
     def on_done(self, input):
         url = self.url_search(input)
