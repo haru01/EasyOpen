@@ -32,6 +32,14 @@ def current_word():
     return view.substr(region)
 
 
+def current_word_region():
+    view = sublime.active_window().active_view()
+    region = view.sel()[0]
+    if region.begin() == region.end():
+        region = view.word(region)
+    return region
+
+
 # filename:linenumber:keyword
 class IndexLine:
     def __init__(self, line):

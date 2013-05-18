@@ -4,6 +4,10 @@
         "command": "sandbox"
     }
     ,{
+        "caption": "EasyOpen;; PasteMethodSnippet",
+        "command": "paste_method_snippet"
+    }
+    ,{
         "caption": "EasyOpen;; Create Index File",
         "command": "create_easy_open_index"
     }
