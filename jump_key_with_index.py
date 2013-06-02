@@ -30,7 +30,7 @@ class JumpKeyWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
         # TODO: 検索条件を見直す
         _key = env()['KEYWORD_DEF'] + '+(self.){0,1}(:){0,1}' + key
         # TODO: asyncのほうがよいか
-        results = self.run_cmd([sh, _key])
+        results = self.run_cmd(["/bin/sh", sh, _key])
         return [item.decode('utf-8') for item in results['out'].split('\n') if item != '']
 
     def panel_done(self, picked):

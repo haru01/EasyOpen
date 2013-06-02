@@ -15,7 +15,6 @@ $ git clone https://github.com/haru01/EasyOpen.git
  - http://gembundler.com/
 - The Silver Searcher (ag)
  - https://github.com/ggreer/the_silver_searcher
-- pkill
 - GotoRecent
  - https://github.com/paccator/GotoRecent
 - Sublime Text 2 plugin: git

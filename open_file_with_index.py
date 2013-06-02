@@ -17,7 +17,7 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def _items(self, key):
         sh = sublime.packages_path() + "/EasyOpen/search_index.sh"
-        results = self.run_cmd([sh, key.replace(' ', '\s')])
+        results = self.run_cmd(["/bin/sh", sh, key.replace(' ', '\s')])
         return [item.decode('utf-8') for item in results['out'].split('\n') if item != '']
 
     def panel_done(self, picked):

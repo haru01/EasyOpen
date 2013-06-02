@@ -16,7 +16,7 @@ class OpenFileInGemsCommand(sublime_plugin.WindowCommand, CommandExecutor):
 
     def items_in_gems_with_ag(self, key):
         ag_sh = sublime.packages_path() + "/EasyOpen/ag_in_gems.sh"
-        thread = self.async_run_cmd(self.cmd_done, [ag_sh, key.replace(' ', '\s')])
+        thread = self.async_run_cmd(self.cmd_done, ["/bin/sh", ag_sh, key.replace(' ', '\s')])
         ProgressBar(thread, 'finding: %s' % key, 'done: %s' % key)
 
     def cmd_done(self, results):

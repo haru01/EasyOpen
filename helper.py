@@ -101,8 +101,9 @@ class ProgressBar(object):
         self.current_time = self.current_time + 500
         if self.timeout < self.current_time:
             sublime.status_message("Stop: %s. Please another keyword" % self.message)
-            # Note: exit(), join(timeout) ではうまく、プロセスが終了しなかったので pkill を使った.
-            CommandExecutor().run_cmd(["pkill", "-f", "EasyOpen/ag_in_gems.sh"])
+            # Note: exit(), join(timeout) ではうまく、プロセスが終了しなかったので kill を使った.
+            sh = sublime.packages_path() + "/EasyOpen/kill_easyopen.sh"
+            CommandExecutor().run_cmd(["/bin/sh", sh])
             return
         if not self.thread.is_alive():
             # TODO: fail message
