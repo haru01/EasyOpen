@@ -25,19 +25,18 @@ def root_directory():
 
 
 def current_word():
-    view = sublime.active_window().active_view()
-    region = view.sel()[0]
-    if region.begin() == region.end():
-        region = view.word(region)
-    return view.substr(region)
+    return view().substr(current_word_region())
 
 
 def current_word_region():
-    view = sublime.active_window().active_view()
-    region = view.sel()[0]
+    region = view().sel()[0]
     if region.begin() == region.end():
-        region = view.word(region)
+        region = view().word(region)
     return region
+
+
+def view():
+    return sublime.active_window().active_view()
 
 
 # filename:linenumber:keyword
