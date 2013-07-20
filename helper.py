@@ -12,7 +12,7 @@ def env():
     return {'PATH': os.environ['PATH'],
             'EDITOR': 'subl',
             'HOME': os.environ['HOME'],
-            'KEYWORD_DEF': '(def\s|class\s|module\s|attr_accessor\s|attr_reader\s|attr_accessor\s|scope\s|class_attribute\s|belongs_to\s|has_many\s|has_one\s|attr_readonly\s)'}
+            'RB_KEYWORD_DEF': '(def\s|class\s|module\s|attr_accessor\s|attr_reader\s|attr_accessor\s|scope\s|class_attribute\s|belongs_to\s|has_many\s|has_one\s|attr_readonly\s)'}
 
 
 def root_directory():
