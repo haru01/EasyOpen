@@ -10,7 +10,7 @@ easy_open_opened_histories = []
 def current_row_colum():
     view = sublime.active_window().active_view()
     row, col = view.rowcol(view.sel()[0].end())
-    return '%d:%d' % (row+1, col)
+    return '%d:%d' % (row+1, col+1)
 
 
 def current_filename_linenumber():
@@ -37,6 +37,7 @@ class JumpKeyWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
         if 0 > picked < len(self.items):
             return
         easy_open_opened_histories.append(current_filename_linenumber())
+        print easy_open_opened_histories
         sublime.active_window().open_file(IndexLine(self.items[picked]).selected_file_name(), sublime.ENCODED_POSITION)
 
 
