@@ -7,12 +7,23 @@ import sublime
 import re
 from subprocess import Popen, PIPE
 
+# config = sublime.load_settings('EasyOpen.sublime-settings')
+# print config.get("indexs")
+
+# TODO: 外部ファイル化
+def index_def():
+    return sublime.load_settings('EasyOpen.sublime-settings').get('indexs')
+
+
+def extensions_exclude_rb():
+    return [k.lower() for k in index_def().iterkeys() if k != 'RB']
+
 
 def env():
     return {'PATH': os.environ['PATH'],
             'EDITOR': 'subl',
             'HOME': os.environ['HOME'],
-            'KEYWORD_DEF': '(def\s|class\s|module\s|attr_accessor\s|attr_reader\s|attr_accessor\s|scope\s|class_attribute\s|belongs_to\s|has_many\s|has_one\s|attr_readonly\s)'}
+            }
 
 
 def root_directory():

@@ -1,3 +1,2 @@
 #!/bin/bash
-
-ag -w --noheading --nobreak --nocolor $1 .easyopen_index
+ag --noheading --nobreak --nocolor $1 .easyopen_index | ag $2:[0-9]*:

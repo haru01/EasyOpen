@@ -6,12 +6,12 @@
       "description": "Easy Open file helper tool. mac only",
       "author": "eiji.ienaga",
       "homepage": "https://github.com/haru01/EasyOpen",
-      "last_modified": "2013-06-02 20:00:00",
+      "last_modified": "2013-08-09 13:00:00",
       "platforms": {
         "osx": [
           {
-            "version": "1.0.1",
-            "url": "https://nodeload.github.com/haru01/EasyOpen/zip/1.0.1"
+            "version": "1.0.2",
+            "url": "https://nodeload.github.com/haru01/EasyOpen/zip/1.0.2"
           }
         ]
       }
