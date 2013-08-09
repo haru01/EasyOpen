@@ -7,13 +7,12 @@ import sublime
 import re
 from subprocess import Popen, PIPE
 
+# config = sublime.load_settings('EasyOpen.sublime-settings')
+# print config.get("indexs")
+
 # TODO: 外部ファイル化
 def index_def():
-    return {
-        'RB': '(def\sself.$keyword|def\s$keyword|class\s$keyword|module\s$keyword|scope\s:$keyword|belongs_to\s:$keyword|has_many\s:$keyword|has_one\s:$keyword|delegate\s:$keyword)',
-        'COFFEE': '$keyword:',
-        'JS': '^.{0,100}($keyword:|var\s$keyword|function\s$keyword|$keyword\s=\sfunction).{1,180}$'
-    }
+    return sublime.load_settings('EasyOpen.sublime-settings').get('indexs')
 
 
 def extensions_exclude_rb():
