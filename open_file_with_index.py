@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, IndexLine, current_word
+from helper import CommandExecutor, IndexLine, current_word, LOCATION_CACHE
 
 
 # TODO: Error
@@ -23,4 +23,5 @@ class OpenFileWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
+        LOCATION_CACHE.appendCurrentLocation()
         sublime.active_window().open_file(IndexLine(self.items[picked]).selected_file_name(), sublime.ENCODED_POSITION)
