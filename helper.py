@@ -7,8 +7,6 @@ import sublime
 import re
 from subprocess import Popen, PIPE
 
-# config = sublime.load_settings('EasyOpen.sublime-settings')
-# print config.get("indexs")
 
 # TODO: 外部ファイル化
 def index_def():
@@ -48,6 +46,17 @@ def current_word_region():
 
 def view():
     return sublime.active_window().active_view()
+
+
+def current_row_colum():
+    view = sublime.active_window().active_view()
+    row, col = view.rowcol(view.sel()[0].end())
+    return '%d:%d' % (row+1, col+1)
+
+
+def current_filename_linenumber():
+    view = sublime.active_window().active_view()
+    return "%s:%s" % (view.file_name(), current_row_colum())
 
 
 # filename:linenumber:keyword
@@ -136,3 +145,18 @@ class SearchWithBrowserCommand(sublime_plugin.WindowCommand):
 
     def on_cancel(self):
         pass
+
+class LocationCache(object):
+    def __init__(self):
+        self.locations = []
+
+    def appendCurrentLocation(self):
+        print "append" + current_filename_linenumber()
+        self.locations.append(current_filename_linenumber())
+
+
+    def pop(self):
+        return self.locations.pop()
+
+
+LOCATION_CACHE = LocationCache()

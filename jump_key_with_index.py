@@ -1,21 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime
 import sublime_plugin
-from helper import CommandExecutor, IndexLine, index_def, current_word
-
-
-easy_open_opened_histories = []
-
-
-def current_row_colum():
-    view = sublime.active_window().active_view()
-    row, col = view.rowcol(view.sel()[0].end())
-    return '%d:%d' % (row+1, col+1)
-
-
-def current_filename_linenumber():
-    view = sublime.active_window().active_view()
-    return "%s:%s" % (view.file_name(), current_row_colum())
+from helper import CommandExecutor, IndexLine, index_def, current_word, LOCATION_CACHE
 
 
 def current_file_extension():
@@ -41,11 +27,10 @@ class JumpKeyWithIndexCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def panel_done(self, picked):
         if 0 > picked < len(self.items):
             return
-        easy_open_opened_histories.append(current_filename_linenumber())
-        print easy_open_opened_histories
+        LOCATION_CACHE.appendCurrentLocation()
         sublime.active_window().open_file(IndexLine(self.items[picked]).selected_file_name(), sublime.ENCODED_POSITION)
 
 
 class JumpBackCommand(sublime_plugin.WindowCommand, CommandExecutor):
     def run(self):
-        sublime.active_window().open_file(easy_open_opened_histories.pop(), sublime.ENCODED_POSITION)
+        sublime.active_window().open_file(LOCATION_CACHE.pop(), sublime.ENCODED_POSITION)
