@@ -7,8 +7,6 @@ import sublime
 import re
 from subprocess import Popen, PIPE
 
-# config = sublime.load_settings('EasyOpen.sublime-settings')
-# print config.get("indexs")
 
 # TODO: 外部ファイル化
 def index_def():
